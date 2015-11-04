@@ -142,13 +142,24 @@ public class ChartXAxisRenderer: ChartAxisRendererBase
         let paraStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
         paraStyle.alignment = .Center
         
-        var labelAttrs = [NSFontAttributeName: _xAxis.labelFont,
+        let normalLabelAttrs = [NSFontAttributeName: _xAxis.labelFont,
             NSForegroundColorAttributeName: _xAxis.labelTextColor,
             NSParagraphStyleAttributeName: paraStyle]
         
-        var subtitleAttrs = [NSFontAttributeName: _xAxis.subtitleFont,
+        let normalSubtitleAttrs = [NSFontAttributeName: _xAxis.subtitleFont,
             NSForegroundColorAttributeName: _xAxis.subtitleTextColor,
             NSParagraphStyleAttributeName: paraStyle]
+        
+        let selectedLabelAttrs = [NSFontAttributeName: _xAxis.selectedLabelFont,
+            NSForegroundColorAttributeName: _xAxis.selectedLabelTextColor,
+            NSParagraphStyleAttributeName: paraStyle]
+        
+        let selectedSubtitleAttrs = [NSFontAttributeName: _xAxis.selectedSubtitleFont,
+            NSForegroundColorAttributeName: _xAxis.selectedSubtitleTextColor,
+            NSParagraphStyleAttributeName: paraStyle]
+        
+        var labelAttrs = normalLabelAttrs
+        var subtitleAttrs = normalSubtitleAttrs
         
         let labelRotationAngleRadians = _xAxis.labelRotationAngle * ChartUtils.Math.FDEG2RAD
         
@@ -176,14 +187,15 @@ public class ChartXAxisRenderer: ChartAxisRendererBase
             if i < _xAxis.subtitles.count {
                 subtitle = _xAxis.subtitles[i]
             }
+            
+            
             if i == _xAxis.selectedIndex {
-                labelAttrs = [NSFontAttributeName: _xAxis.selectedLabelFont,
-                    NSForegroundColorAttributeName: _xAxis.selectedLabelTextColor,
-                    NSParagraphStyleAttributeName: paraStyle]
-                
-                subtitleAttrs = [NSFontAttributeName: _xAxis.selectedSubtitleFont,
-                    NSForegroundColorAttributeName: _xAxis.selectedSubtitleTextColor,
-                    NSParagraphStyleAttributeName: paraStyle]
+                labelAttrs = selectedLabelAttrs
+                subtitleAttrs = selectedSubtitleAttrs
+            }
+            else{
+                labelAttrs = normalLabelAttrs
+                subtitleAttrs = normalSubtitleAttrs
             }
             
             position.x = CGFloat(i)
