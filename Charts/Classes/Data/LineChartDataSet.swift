@@ -18,7 +18,7 @@ import UIKit
 public class LineChartDataSet: LineRadarChartDataSet
 {
     public var circleColors = [UIColor]()
-    public var circleHoleColor = UIColor.whiteColor()
+    public var circleHoleColors = [UIColor]()
     public var circleRadius = CGFloat(8.0)
     
     private var _cubicIntensity = CGFloat(0.2)
@@ -104,6 +104,18 @@ public class LineChartDataSet: LineRadarChartDataSet
     public var isDrawCubicEnabled: Bool { return drawCubicEnabled; }
     
     public var isDrawCircleHoleEnabled: Bool { return drawCircleHoleEnabled; }
+    
+    /// - returns: the color at the given index of the DataSet's circle--hole-color array.
+    /// Performs a IndexOutOfBounds check by modulus.
+    public func getCircleHoleColor(var index: Int) -> UIColor
+    {
+        let size = circleHoleColors.count
+        if size == 0 {
+            return UIColor.whiteColor()
+        }
+        index = index % size
+        return circleHoleColors[index]
+    }
     
     /// Sets a custom FillFormatter to the chart that handles the position of the filled-line for each DataSet. Set this to null to use the default logic.
     public var fillFormatter: ChartFillFormatter?

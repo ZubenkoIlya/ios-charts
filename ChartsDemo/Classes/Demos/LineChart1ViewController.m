@@ -142,7 +142,9 @@
     [set1 setCircleColor:UIColor.blackColor];
     set1.lineWidth = 1.0;
     set1.circleRadius = 3.0;
-    set1.drawCircleHoleEnabled = NO;
+    set1.drawCircleHoleEnabled = YES;
+    NSArray* arr = [[NSArray alloc] initWithObjects:[UIColor redColor], [UIColor whiteColor], [UIColor blueColor], nil];
+    set1.circleHoleColors = arr;
     set1.valueFont = [UIFont systemFontOfSize:9.f];
     set1.fillAlpha = 65/255.0;
     set1.fillColor = UIColor.blackColor;
@@ -150,8 +152,7 @@
     NSMutableArray *dataSets = [[NSMutableArray alloc] init];
     [dataSets addObject:set1];
     
-//    LineChartData *data = [[LineChartData alloc] initWithXVals:xVals dataSets:dataSets];
-    LineChartData *data = [[LineChartData alloc] init];
+    LineChartData *data = [[LineChartData alloc] initWithXVals:xVals dataSets:dataSets];
     _chartView.data = data;
 }
 

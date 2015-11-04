@@ -142,11 +142,11 @@ public class ChartXAxisRenderer: ChartAxisRendererBase
         let paraStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
         paraStyle.alignment = .Center
         
-        let labelAttrs = [NSFontAttributeName: _xAxis.labelFont,
+        var labelAttrs = [NSFontAttributeName: _xAxis.labelFont,
             NSForegroundColorAttributeName: _xAxis.labelTextColor,
             NSParagraphStyleAttributeName: paraStyle]
         
-        let subtitleAttrs = [NSFontAttributeName: _xAxis.subtitleFont,
+        var subtitleAttrs = [NSFontAttributeName: _xAxis.subtitleFont,
             NSForegroundColorAttributeName: _xAxis.subtitleTextColor,
             NSParagraphStyleAttributeName: paraStyle]
         
@@ -166,13 +166,24 @@ public class ChartXAxisRenderer: ChartAxisRendererBase
         for (var i = _minX, maxX = min(_maxX + 1, _xAxis.values.count); i < maxX; i += _xAxis.axisLabelModulus)
         {
             let label = _xAxis.values[i]
+            
+            if (label == nil)
+            {
+                continue
+            }
+            
             var subtitle : String?
             if i < _xAxis.subtitles.count {
                 subtitle = _xAxis.subtitles[i]
             }
-            if (label == nil)
-            {
-                continue
+            if i == _xAxis.selectedIndex {
+                labelAttrs = [NSFontAttributeName: _xAxis.selectedLabelFont,
+                    NSForegroundColorAttributeName: _xAxis.selectedLabelTextColor,
+                    NSParagraphStyleAttributeName: paraStyle]
+                
+                subtitleAttrs = [NSFontAttributeName: _xAxis.selectedSubtitleFont,
+                    NSForegroundColorAttributeName: _xAxis.selectedSubtitleTextColor,
+                    NSParagraphStyleAttributeName: paraStyle]
             }
             
             position.x = CGFloat(i)

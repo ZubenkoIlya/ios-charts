@@ -526,7 +526,7 @@ public class LineChartRenderer: LineScatterCandleRadarChartRenderer
                 
                 if (isDrawCircleHoleEnabled)
                 {
-                    CGContextSetFillColorWithColor(context, dataSet.circleHoleColor.CGColor)
+                    CGContextSetFillColorWithColor(context, dataSet.getCircleHoleColor(j).CGColor)
                     
                     rect.origin.x = pt.x - circleHoleRadius
                     rect.origin.y = pt.y - circleHoleRadius

@@ -23,6 +23,12 @@ public class ChartAxisBase: ChartComponentBase
     public var subtitleFont = UIFont.systemFontOfSize(10.0)
     public var subtitleTextColor = UIColor.blackColor()
     
+    public var selectedLabelFont = UIFont.systemFontOfSize(10.0)
+    public var selectedLabelTextColor = UIColor.blackColor()
+    
+    public var selectedSubtitleFont = UIFont.systemFontOfSize(10.0)
+    public var selectedSubtitleTextColor = UIColor.blackColor()
+    
     public var axisLineColor = UIColor.grayColor()
     public var axisLineWidth = CGFloat(0.5)
     public var axisLineDashPhase = CGFloat(0.0)
