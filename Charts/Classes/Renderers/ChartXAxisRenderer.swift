@@ -52,6 +52,9 @@ public class ChartXAxisRenderer: ChartAxisRendererBase
         _xAxis.labelRotatedHeight = labelRotatedSize.height
         
         _xAxis.values = xValues
+        if let subtitles = xSubtitles{
+            _xAxis.subtitles = subtitles
+        }
     }
     
     public override func renderAxisLabels(context context: CGContext)
@@ -200,10 +203,13 @@ public class ChartXAxisRenderer: ChartAxisRendererBase
                     }
                 }
                 
-                drawLabel(context: context, label: label!, xIndex: i, x: position.x, y: pos, attributes: labelAttrs, constrainedToSize: labelMaxSize, anchor: anchor, angleRadians: labelRotationAngleRadians)
                 if subtitle != nil {
-                    let subtitleYPos = labelns.boundingRectWithSize(labelMaxSize, options: .UsesLineFragmentOrigin, attributes: labelAttrs, context: nil).size.height + 8
-                    drawLabel(context: context, label: subtitle!, xIndex: i, x: position.x, y: subtitleYPos, attributes: subtitleAttrs, constrainedToSize: labelMaxSize, anchor: anchor, angleRadians: labelRotationAngleRadians)
+                    let titlePos = pos - labelns.boundingRectWithSize(labelMaxSize, options: .UsesLineFragmentOrigin, attributes: labelAttrs, context: nil).size.height + 8
+                    drawLabel(context: context, label: label!, xIndex: i, x: position.x, y: titlePos, attributes: labelAttrs, constrainedToSize: labelMaxSize, anchor: anchor, angleRadians: labelRotationAngleRadians)
+                    drawLabel(context: context, label: subtitle!, xIndex: i, x: position.x, y: pos, attributes: subtitleAttrs, constrainedToSize: labelMaxSize, anchor: anchor, angleRadians: labelRotationAngleRadians)
+                }
+                else {
+                    drawLabel(context: context, label: label!, xIndex: i, x: position.x, y: pos, attributes: labelAttrs, constrainedToSize: labelMaxSize, anchor: anchor, angleRadians: labelRotationAngleRadians)
                 }
             }
         }
