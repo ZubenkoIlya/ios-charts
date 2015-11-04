@@ -36,6 +36,7 @@ public class ChartData: NSObject
     private var _xValAverageLength = Double(0.0)
     
     internal var _xVals: [String?]!
+    internal var _xSubtitles: [String?]?
     internal var _dataSets: [ChartDataSet]!
     
     public override init()
@@ -358,6 +359,12 @@ public class ChartData: NSObject
     public var xVals: [String?]
     {
         return _xVals
+    }
+    
+    /// - returns: the x-subtitles
+    public var xSubtitles: [String?]?
+    {
+            return _xSubtitles
     }
     
     ///Adds a new x-value to the chart data.

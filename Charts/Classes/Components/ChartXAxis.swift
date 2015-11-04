@@ -29,6 +29,9 @@ public class ChartXAxis: ChartAxisBase
     
     public var values = [String?]()
     
+    // subtitles for the xAxis labels
+    public var subtitles = [String?]()
+    
     /// width of the x-axis labels in pixels - this is automatically calculated by the computeAxis() methods in the renderers
     public var labelWidth = CGFloat(1.0)
     

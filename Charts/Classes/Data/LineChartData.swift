@@ -30,4 +30,10 @@ public class LineChartData: ChartData
     {
         super.init(xVals: xVals, dataSets: dataSets)
     }
+    
+    public convenience init(xVals: [NSObject]?, dataSets: [ChartDataSet]?, subtitles: [String?]) {
+        self.init(xVals: xVals, dataSets: dataSets)
+        _xSubtitles = subtitles
+    }
+
 }

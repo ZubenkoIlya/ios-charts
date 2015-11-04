@@ -26,7 +26,7 @@ public class ChartXAxisRenderer: ChartAxisRendererBase
         _xAxis = xAxis
     }
     
-    public func computeAxis(xValAverageLength xValAverageLength: Double, xValues: [String?])
+    public func computeAxis(xValAverageLength xValAverageLength: Double, xValues: [String?], xSubtitles: [String?]? = nil)
     {
         var a = ""
         
@@ -142,6 +142,11 @@ public class ChartXAxisRenderer: ChartAxisRendererBase
         let labelAttrs = [NSFontAttributeName: _xAxis.labelFont,
             NSForegroundColorAttributeName: _xAxis.labelTextColor,
             NSParagraphStyleAttributeName: paraStyle]
+        
+        let subtitleAttrs = [NSFontAttributeName: _xAxis.subtitleFont,
+            NSForegroundColorAttributeName: _xAxis.subtitleTextColor,
+            NSParagraphStyleAttributeName: paraStyle]
+        
         let labelRotationAngleRadians = _xAxis.labelRotationAngle * ChartUtils.Math.FDEG2RAD
         
         let valueToPixelMatrix = transformer.valueToPixelMatrix
@@ -158,6 +163,10 @@ public class ChartXAxisRenderer: ChartAxisRendererBase
         for (var i = _minX, maxX = min(_maxX + 1, _xAxis.values.count); i < maxX; i += _xAxis.axisLabelModulus)
         {
             let label = _xAxis.values[i]
+            var subtitle : String?
+            if i < _xAxis.subtitles.count {
+                subtitle = _xAxis.subtitles[i]
+            }
             if (label == nil)
             {
                 continue
@@ -192,6 +201,10 @@ public class ChartXAxisRenderer: ChartAxisRendererBase
                 }
                 
                 drawLabel(context: context, label: label!, xIndex: i, x: position.x, y: pos, attributes: labelAttrs, constrainedToSize: labelMaxSize, anchor: anchor, angleRadians: labelRotationAngleRadians)
+                if subtitle != nil {
+                    let subtitleYPos = labelns.boundingRectWithSize(labelMaxSize, options: .UsesLineFragmentOrigin, attributes: labelAttrs, context: nil).size.height + 8
+                    drawLabel(context: context, label: subtitle!, xIndex: i, x: position.x, y: subtitleYPos, attributes: subtitleAttrs, constrainedToSize: labelMaxSize, anchor: anchor, angleRadians: labelRotationAngleRadians)
+                }
             }
         }
     }

@@ -104,6 +104,10 @@
     [self slidersValueChanged:nil];
     
     [_chartView animateWithXAxisDuration:2.5 easingOption:ChartEasingOptionEaseInOutQuart];
+    
+    //subtitles
+    _chartView.xAxis.subtitleFont = [UIFont systemFontOfSize:14.0];
+    _chartView.xAxis.subtitleTextColor = [UIColor grayColor];
 }
 
 - (void)didReceiveMemoryWarning
@@ -146,8 +150,8 @@
     NSMutableArray *dataSets = [[NSMutableArray alloc] init];
     [dataSets addObject:set1];
     
-    LineChartData *data = [[LineChartData alloc] initWithXVals:xVals dataSets:dataSets];
-    
+//    LineChartData *data = [[LineChartData alloc] initWithXVals:xVals dataSets:dataSets];
+    LineChartData *data = [[LineChartData alloc] init];
     _chartView.data = data;
 }
 
