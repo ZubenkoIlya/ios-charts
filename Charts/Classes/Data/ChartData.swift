@@ -379,6 +379,18 @@ public class ChartData: NSObject
         _xVals.removeAtIndex(index)
     }
     
+    /// Insert new Subtitle
+    public func insertSubtitle(subtitle: String, index: Int)
+    {
+        _xSubtitles?[index] = subtitle
+    }
+    
+    /// Removes the subtitle at the specified index.
+    public func removeSubtitle(index: Int)
+    {
+        _xSubtitles?.removeAtIndex(index)
+    }
+    
     /// - returns: the array of ChartDataSets this object holds.
     public var dataSets: [ChartDataSet]
     {
