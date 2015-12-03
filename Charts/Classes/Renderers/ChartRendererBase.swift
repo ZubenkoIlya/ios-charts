@@ -57,8 +57,8 @@ public class ChartRendererBase: NSObject
         
         let subLow = (low % xAxisModulus == 0) ? xAxisModulus : 0
         
-        _minX = max((low / xAxisModulus) * (xAxisModulus) - subLow, 0)
         _maxX = min((high / xAxisModulus) * (xAxisModulus) + xAxisModulus, Int(chart.chartXMax))
+        _minX = min(max((low / xAxisModulus) * (xAxisModulus) - subLow, 0), _maxX)
     }
 }
         
