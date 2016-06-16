@@ -227,7 +227,7 @@ public class ChartXAxisRenderer: ChartAxisRendererBase
                 }
                 
                 if subtitle != nil {
-                    let titlePos = pos - labelns.boundingRectWithSize(labelMaxSize, options: .UsesLineFragmentOrigin, attributes: labelAttrs, context: nil).size.height + 8
+                    let titlePos = pos - labelns.boundingRectWithSize(labelMaxSize, options: .UsesLineFragmentOrigin, attributes: labelAttrs, context: nil).size.height
                     drawLabel(context: context, label: label!, xIndex: i, x: position.x, y: titlePos, attributes: labelAttrs, constrainedToSize: labelMaxSize, anchor: anchor, angleRadians: labelRotationAngleRadians)
                     drawLabel(context: context, label: subtitle!, xIndex: i, x: position.x, y: pos, attributes: subtitleAttrs, constrainedToSize: labelMaxSize, anchor: anchor, angleRadians: labelRotationAngleRadians)
                 }
